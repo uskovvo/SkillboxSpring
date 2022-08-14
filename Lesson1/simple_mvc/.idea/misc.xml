@@ -3,13 +3,14 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
-    <file type="web" url="file://$PROJECT_DIR$/../simple_mvc_home_task/simple_mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/../simple_mvc_home_task/simple_mvc_home_task" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../simple_mvc_home_task/simple_mvc/pom.xml" />
+        <option value="$PROJECT_DIR$/../simple_mvc_home_task/simple_mvc_home_task/pom.xml" />
       </list>
     </option>
   </component>

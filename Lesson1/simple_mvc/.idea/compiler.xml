@@ -11,5 +11,8 @@
         <module name="simple_mvc1" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="simple_mvc_home_task" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
