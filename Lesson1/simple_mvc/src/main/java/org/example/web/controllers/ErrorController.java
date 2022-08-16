@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@ControllerAdvice
+@Controller
 public class ErrorController {
 
     @GetMapping("/404")
