@@ -12,4 +12,5 @@ org\example\web\controllers\LoginController.class
 org\example\app\config\SecurityInit.class
 org\example\web\dto\LoginForm.class
 org\example\app\services\IdProvider.class
+org\example\app\config\DbConfig.class
 org\example\web\dto\Book.class

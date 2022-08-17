@@ -13,7 +13,7 @@ public class BookService {
     private final Logger logger = Logger.getLogger(BookService.class);
 
     @Autowired
-    public BookService(BookRepository<Book> bookRepo) {
+    public BookService(ProjectRepository<Book> bookRepo) {
         this.bookRepo = bookRepo;
     }
 
@@ -25,7 +25,7 @@ public class BookService {
         bookRepo.store(book);
     }
 
-    public boolean removeBookById(String bookIdToRemove) {
+    public boolean removeBookById(Integer bookIdToRemove) {
         return bookRepo.removeItemById(bookIdToRemove);
     }
 

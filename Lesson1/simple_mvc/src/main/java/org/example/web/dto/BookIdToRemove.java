@@ -1,17 +1,17 @@
 package org.example.web.dto;
 
-import javax.validation.constraints.NotEmpty;
+import org.springframework.lang.NonNull;
 
 public class BookIdToRemove {
 
-    @NotEmpty
-    private String id;
+    @NonNull
+    private Integer id;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }
