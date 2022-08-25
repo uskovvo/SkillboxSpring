@@ -45,7 +45,7 @@ public class BookRepository<B> implements ProjectRepository<Book>, ApplicationCo
         return false;
     }
 
-    public boolean removeItemById(Integer intToRemove) {
+    private boolean removeItemById(Integer intToRemove) {
         List<Book> newList = new ArrayList<>();
         for(Book book: retreiveAll()){
             if(book.getId().equals(intToRemove)) {
@@ -60,7 +60,7 @@ public class BookRepository<B> implements ProjectRepository<Book>, ApplicationCo
         return newList.addAll(repo);
     }
 
-    public boolean removeItemByAuthorOrTitle(String stringToRemove){
+    private boolean removeItemByAuthorOrTitle(String stringToRemove){
         List<Book> newList = new ArrayList<>();
         for (Book book: retreiveAll()){
             if(book.getAuthor().equals(stringToRemove)){
