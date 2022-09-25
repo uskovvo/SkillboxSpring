@@ -8,6 +8,8 @@ D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\WebAppIni
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\controllers\ErrorController.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\services\BookRepository.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\dto\LoginForm.java
+D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\dto\BookToRemoveByRegex.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\config\WebContextConfig.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\services\IdProvider.java
+D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\exceptions\BookShelfRemoveException.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\services\LoginService.java

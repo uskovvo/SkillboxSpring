@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
-public class BookRepository<B> implements ProjectRepository<Book>, ApplicationContextAware {
+public class BookRepository implements ProjectRepository<Book>, ApplicationContextAware {
 
     private final Logger logger = Logger.getLogger(BookRepository.class);
     private final List<Book> repo = new ArrayList<>();
@@ -37,42 +38,48 @@ public class BookRepository<B> implements ProjectRepository<Book>, ApplicationCo
             queryRegex = queryRegex.trim();
             if (isDigit(queryRegex)) {
                 Integer intQuery = Integer.parseInt(queryRegex);
-                return removeItemById(intQuery);
+                return removeItemBySize(intQuery);
             }else {
-                return removeItemByAuthorOrTitle(queryRegex);
+                return removeItemByAuthorOrTitleOrId(queryRegex);
             }
         }
         return false;
     }
 
-    private boolean removeItemById(Integer intToRemove) {
-        List<Book> newList = new ArrayList<>();
+    private boolean removeItemBySize(Integer intToRemove) {
+//        List<Book> newList = new ArrayList<>();
+        int count = 0;
         for(Book book: retreiveAll()){
-            if(book.getId().equals(intToRemove)) {
-                logger.info("remove book by Id: " + book);
-                return repo.remove(book);
-            }
-            else if(book.getSize().equals(intToRemove)){
+            if(Objects.equals(book.getSize(), intToRemove)){
                 logger.info("remove book by Size: " + book);
+                count++;
                 repo.remove(book);
             }
         }
-        return newList.addAll(repo);
+        return count > 0;
     }
 
-    private boolean removeItemByAuthorOrTitle(String stringToRemove){
-        List<Book> newList = new ArrayList<>();
+    private boolean removeItemByAuthorOrTitleOrId(String stringToRemove){
+//        List<Book> newList = new ArrayList<>();
+        int count = 0;
         for (Book book: retreiveAll()){
             if(book.getAuthor().equals(stringToRemove)){
                 logger.info("remove book by Author: " + book);
+                count++;
                 repo.remove(book);
             }else if(book.getTitle().equals(stringToRemove)){
                 logger.info("remove book by Title: " + book);
+                count++;
                 repo.remove(book);
+            }else if(book.getId().equals(stringToRemove)){
+                logger.info("remove book by Id: " + book);
+                repo.remove(book);
+                return true;
             }
         }
-        return newList.addAll(repo);
+        return count > 0;
     }
+
 
     private boolean isDigit(String query){
         try{

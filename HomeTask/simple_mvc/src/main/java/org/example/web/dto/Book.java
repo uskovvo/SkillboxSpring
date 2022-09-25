@@ -2,11 +2,14 @@ package org.example.web.dto;
 
 import org.springframework.lang.NonNull;
 
+import javax.validation.constraints.Digits;
+
 public class Book {
 
     private String id;
     private String author;
     private String title;
+    @Digits(integer = 4, fraction = 0)
     private Integer size;
 
     public String getId() {
