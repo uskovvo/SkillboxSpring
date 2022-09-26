@@ -3,12 +3,19 @@ package org.example.web.dto;
 import org.springframework.lang.NonNull;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class Book {
 
     private Integer id;
+
+    @NotEmpty(message = "not empty")
     private String author;
+
+    @NotEmpty(message = "not empty")
     private String title;
+
     @Digits(integer = 4, fraction = 0)
     private Integer size;
 

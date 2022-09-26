@@ -55,17 +55,17 @@ public class BookRepository implements ProjectRepository<Book>, ApplicationConte
 
     @Override
     public boolean removeItemByRegex(String queryRegex) {
-        if(!queryRegex.isEmpty()) {
-            MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-            queryRegex = queryRegex.trim();
-            if (isDigit(queryRegex)) {
-                Integer intQuery = Integer.parseInt(queryRegex);
-                return removeItemBySizeOrId(intQuery, parameterSource);
-            }else {
-                return removeItemByAuthorOrTitle(queryRegex, parameterSource);
-            }
+        queryRegex = queryRegex.trim();
+        if(queryRegex.isEmpty()) {
+            return false;
         }
-        return false;
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        if (isDigit(queryRegex)) {
+            Integer intQuery = Integer.parseInt(queryRegex);
+            return removeItemBySizeOrId(intQuery, parameterSource);
+        }else {
+            return removeItemByAuthorOrTitle(queryRegex, parameterSource);
+        }
     }
 
     private boolean removeItemBySizeOrId(Integer intToRemove, MapSqlParameterSource parameterSource) {

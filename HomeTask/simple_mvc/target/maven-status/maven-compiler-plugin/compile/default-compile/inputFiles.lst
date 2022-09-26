@@ -1,6 +1,7 @@
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\services\ProjectRepository.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\exceptions\BookShelfLoginException.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\controllers\LoginController.java
+D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\config\AppContextConfig.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\services\BookService.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\controllers\BookShelfController.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\dto\Book.java
@@ -8,8 +9,12 @@ D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\WebAppIni
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\controllers\ErrorController.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\services\BookRepository.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\dto\LoginForm.java
+D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\exceptions\BookShelfUploadFileException.java
+D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\config\SecurityInit.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\dto\BookToRemoveByRegex.java
+D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\config\AppSecurityConfig.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\web\config\WebContextConfig.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\services\IdProvider.java
+D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\config\DbConfig.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\exceptions\BookShelfRemoveException.java
 D:\Valera\SkillboxSpring\HomeTask\simple_mvc\src\main\java\org\example\app\services\LoginService.java

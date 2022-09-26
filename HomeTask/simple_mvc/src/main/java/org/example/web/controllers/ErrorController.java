@@ -12,7 +12,12 @@ public class ErrorController {
     }
 
     @GetMapping("/500")
-    public  String badRequest() {
+    public String badRequest() {
         return "errors/500";
+    }
+
+    @GetMapping("/405")
+    public String nullFile() {
+        return "errors/405";
     }
 }
