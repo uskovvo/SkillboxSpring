@@ -12,7 +12,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="simple_mvc (1)" target="1.8" />
       <module name="simple_mvc_home_task" target="1.8" />
     </bytecodeTargetLevel>
   </component>
