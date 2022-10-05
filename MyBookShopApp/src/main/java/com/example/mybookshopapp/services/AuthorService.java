@@ -28,8 +28,7 @@ public class AuthorService {
             return author;
         });
         for(Author author: authors){
-            String lastName = author.getLastName().toUpperCase(Locale.ROOT);
-            String firstLetter = String.valueOf(lastName.charAt(0));
+            String firstLetter = author.getLastName().toUpperCase(Locale.ROOT).substring(0,1);
             if(!map.containsKey(firstLetter)){
                 map.put(firstLetter, new TreeSet<>());
             }
