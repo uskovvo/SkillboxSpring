@@ -9,7 +9,7 @@
 <!--[if IE 9]>
 <html class="ie9" lang="ru">
 <![endif]-->
-<!--[if gt IE 9]><!--> <html lang="ru"> <!--<![endif]-->
+<!--[if gt IE 9]><!--> <html lang="ru" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
 <head>
   <title>Тут название страницы написать</title>
   <meta name="description" content="Описание страницы">
@@ -76,15 +76,15 @@
       <div class="wrap">
         <nav class="menuModal" id="navigate">
           <ul class="menu menu_main">
-            <li class="menu-item"><a class="menu-link" href="/index.html">Главная</a>
+            <li class="menu-item"><a class="menu-link" href="/index.html" th:href="@{/}">Главная</a>
             </li>
             <li class="menu-item"><a class="menu-link" href="/genres/index.html">Жанры</a>
             </li>
-            <li class="menu-item"><a class="menu-link" href="/books/recent.html">Новинки</a>
+            <li class="menu-item"><a class="menu-link" href="/books/recent.html" th:href="@{/books/recent}">Новинки</a>
             </li>
-            <li class="menu-item"><a class="menu-link" href="/books/popular.html">Популярное</a>
+            <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:href="@{/books/popular}">Популярное</a>
             </li>
-            <li class="menu-item"><a class="menu-link" href="/authors/index.html">Авторы</a>
+            <li class="menu-item"><a class="menu-link" href="/authors/index.html" th:href="@{/authors}">Авторы</a>
             </li>
           </ul>
         </nav>
@@ -97,15 +97,15 @@
         <h1 class="Middle-title">Отложенное
         </h1>
         <form class="form Cart Cart_postponed" action="#" method="post">
-          <div class="Cart-product">
+          <div class="Cart-product" th:each="book : ${postponedBook}">
             <div class="Cart-block Cart-block_row">
               <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="/assets/img/content/main/card.jpg" alt="card.jpg"/></a>
               </div>
               <div class="Cart-block Cart-block_row">
                 <div class="Cart-block Cart-block_info">
-                  <div class="Cart-author"><a href="#">Борис Васильевич Бедный</a>
+                  <div class="Cart-author"><a href="#" th:text="${book.author}">Борис Васильевич Бедный</a>
                   </div>
-                  <div class="Cart-title"><a href="#">Жизнь</a>
+                  <div class="Cart-title"><a href="#" th:text="${book.title}">Жизнь</a>
                   </div>
                   <div class="Cart-rating"><span class="Rating"><span class="Rating-stars"><span class="Rating-star Rating-star_view">
                           <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
@@ -158,7 +158,7 @@
                 <div class="Cart-block Cart-block_price">
                   <div class="Cart-priceTitle">Цена:
                   </div>
-                  <div class="Cart-price">254 р.
+                  <div class="Cart-price" th:text="${book.priceOld}">254 р.
                   </div>
                 </div>
               </div>
