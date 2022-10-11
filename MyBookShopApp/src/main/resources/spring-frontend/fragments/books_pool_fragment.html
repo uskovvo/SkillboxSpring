@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="Cards" th:fragment="bookSlider(recommendedBooks)">
+    <div class="Card" th:each="book : ${recommendedBooks}">
+        <div class="Card-picture">
+            <a href="#a" th:href="${book.id}">
+                <img src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
+                <div th:if="${book.price != null}" class="Card-sale" th:text="#{price.discount}">30% скидка</div>
+            </a>
+        </div>
+        <div class="Card-content">
+            <strong class="Card-title">
+                <a href="#" th:text="${book.title}"></a>
+            </strong>
+            <div class="Card-description" th:text="${book.author}"></div>
+            <div class="Card-cost">
+                <span th:if="${book.price != null}" class="Card-priceOld" th:text="${book.priceOld}"></span>
+                <span class="Card-price" th:text="${book.price == null} ? ${book.priceOld} : ${book.price}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

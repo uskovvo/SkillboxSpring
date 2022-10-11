@@ -10,26 +10,7 @@
 <![endif]-->
 <!--[if gt IE 9]><!-->
 <html lang="ru" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
-<head>
-    <title>Тут название страницы написать</title>
-    <meta name="description" content="Описание страницы">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <!--meta( http-equiv="cache-control" content="no-cache")-->
-    <!--meta( http-equiv="expires" content="0")-->
-    <!--link(rel="preload" href="assets/css/extra.min.css?v=" + version as="style" crossorigin="anonymous")-->
-    <link href="favicon.ico" rel="shortcut icon">
-    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-SemiBold.woff2" as="font" crossorigin="anonymous">
-    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Light.woff2" as="font" crossorigin="anonymous">
-    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Medium.woff2" as="font" crossorigin="anonymous">
-    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-ExtraBold.woff2" as="font" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/fonts.min.css?v=59641147">
-    <link rel="stylesheet" href="/assets/css/basic.min.css?v=59641147">
-    <link rel="stylesheet" href="/assets/css/extra.min.css?v=59641147">
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <script defer src="/assets/js/scripts.min.js?v=59641147"></script>
-</head>
+<head th:replace="~{fragments/head_fragment :: headFragment}"></head>
 <body class="Site">
 <!--if lt IE 8
 p.error-browser
@@ -40,19 +21,18 @@ p.error-browser
         | браузера здесь&nbsp;
     | для правильного отображения сайта.
 -->
-<header th:replace="~{fragments/header_fragment :: headFragment}"></header>
+<header th:replace="~{fragments/header_fragment :: headerFragment}"></header>
 <div class="Middle">
     <div class="wrap">
         <main class="Middle-main">
-            <h1 class="Middle-title">Авторы
+            <h1 class="Middle-title" th:text="#{topbar.authors}">Авторы
             </h1>
             <div class="Section">
                 <div class="Authors">
                     <div class="Authors-links">
-                        <a th:each="letters : ${authorsMap}" class="Authors-link" href="#a"
-                           th:href="'#' + ${#strings.toLowerCase(letters.key)}"
+                        <a th:each="letters : ${authorsMap}" class="Authors-link"
+                           href="#a" th:href="'#' + ${#strings.toLowerCase(letters.key)}"
                            th:text="${letters.key}">А</a>
-                        <!--              <a class="Authors-link" href="#b">Б</a><a class="Authors-link" href="#v">В</a><a class="Authors-link" href="#g">Г</a><a class="Authors-link" href="#d">Д</a><a class="Authors-link" href="#e">Е</a><a class="Authors-link" href="#e">Ё</a><a class="Authors-link" href="#ge">Ж</a><a class="Authors-link" href="#z">З</a><a class="Authors-link" href="#i">И</a><a class="Authors-link" href="#ik">Й</a><a class="Authors-link" href="#k">К</a><a class="Authors-link" href="#l">Л</a><a class="Authors-link" href="#m">М</a><a class="Authors-link" href="#n">Н</a><a class="Authors-link" href="#o">О</a><a class="Authors-link" href="#p">П</a><a class="Authors-link" href="#r">Р</a><a class="Authors-link" href="#s">С</a><a class="Authors-link" href="#t">Т</a><a class="Authors-link" href="#u">У</a><a class="Authors-link" href="#f">Ф</a><a class="Authors-link" href="#h">Х</a><a class="Authors-link" href="#c">Ц</a><a class="Authors-link" href="#ch">Ч</a><a class="Authors-link" href="#sh">Ш</a><a class="Authors-link" href="#shh">Щ</a><a class="Authors-link" href="#ye">Э</a><a class="Authors-link" href="#yu">Ю</a><a class="Authors-link" href="#ya">Я</a>-->
                     </div>
                     <div class="Authors-block" th:each="letters : ${authorsMap}">
                         <h2 class="Authors-title" id="a" th:id="${#strings.toLowerCase(letters.key)}"
@@ -60,7 +40,7 @@ p.error-browser
                         </h2>
                         <div class="Authors-letter">
                             <div th:each="author : ${letters.value}" class="Authors-item">
-                                <a href="/authors/slug.html" th:text="${author.getLastName() + ' ' + author.firstName}">Абгарян
+                                <a href="/authors/slug.html" th:href="@{/authors/slug}" th:text="${author.getLastName() + ' ' + author.firstName}">Абгарян
                                     Наринэ</a>
                             </div>
                         </div>

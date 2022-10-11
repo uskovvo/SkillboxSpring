@@ -19,7 +19,7 @@ public class PostponedPageController {
         this.bookService = bookService;
     }
 
-    @ModelAttribute("postponedBook")
+    @ModelAttribute("postponedBooks")
     public List<Book> bookList(){
         return bookService.getBooksData();
     }

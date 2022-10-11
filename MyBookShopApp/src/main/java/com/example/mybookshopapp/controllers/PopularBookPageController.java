@@ -19,7 +19,7 @@ public class PopularBookPageController {
         this.bookService = bookService;
     }
 
-    @ModelAttribute("popularBook")
+    @ModelAttribute("popularBooks")
     public List<Book> bookList(){
         return bookService.getBooksData();
     }
