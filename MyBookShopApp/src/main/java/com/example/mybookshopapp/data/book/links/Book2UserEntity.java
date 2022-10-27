@@ -1,8 +1,5 @@
 package com.example.mybookshopapp.data.book.links;
 
-import com.example.mybookshopapp.data.Book;
-import com.example.mybookshopapp.data.user.UserEntity;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -12,28 +9,26 @@ public class Book2UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(columnDefinition = "TIMESTAMP NOT NULL")
+    @Column(columnDefinition = "DATE", nullable = false)
     private LocalDateTime time;
 
     @ManyToOne
     @JoinColumn(name = "type_id", referencedColumnName = "id")
     private Book2UserTypeEntity book2UserType;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity userId;
+    @Column(name = "user_id", columnDefinition = "INT", nullable = false)
+    private Integer userId;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private Book bookId;
+    @Column(name = "book_id", columnDefinition = "INT", nullable = false)
+    private Integer bookId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,19 +48,19 @@ public class Book2UserEntity {
         this.book2UserType = book2UserType;
     }
 
-    public UserEntity getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(UserEntity userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public void setBookId(Book bookId) {
-        this.bookId = bookId;
+    public Integer getBookId() {
+        return bookId;
     }
 
-    public Book getBookId() {
-        return bookId;
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
     }
 }

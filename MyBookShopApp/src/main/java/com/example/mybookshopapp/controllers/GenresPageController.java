@@ -1,5 +1,6 @@
 package com.example.mybookshopapp.controllers;
 
+import com.example.mybookshopapp.data.Author;
 import com.example.mybookshopapp.data.Book;
 import com.example.mybookshopapp.data.Genre;
 import com.example.mybookshopapp.services.BookService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class GenresPageController {
@@ -28,10 +30,10 @@ public class GenresPageController {
         return bookService.getBooksData();
     }
 
-    @ModelAttribute("genres")
-    public List<Genre> genresList(){
-        return genresService.getGenresData();
-    }
+//    @ModelAttribute("genres")
+//    public List<Genre> genresList(){
+//        return genresService.getGenresData();
+//    }
 
     @GetMapping("/genres/slug")
     public String genreBookPage(){

@@ -1,8 +1,5 @@
 package com.example.mybookshopapp.data.book.links;
 
-import com.example.mybookshopapp.data.Author;
-import com.example.mybookshopapp.data.Book;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,40 +8,38 @@ public class Book2AuthorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private Book bookId;
+    @Column(name = "book_id", columnDefinition = "INT", nullable = false)
+    private Integer bookId;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private Author authorId;
+    @Column(name = "author_id", columnDefinition = "INT", nullable = false)
+    private Integer authorId;
 
-    @Column(columnDefinition = "INT NOT NULL  DEFAULT 0")
+    @Column(columnDefinition = "INT DEFAULT 0", nullable = false)
     private int sortIndex;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Book getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    public void setBookId(Book bookId) {
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 
-    public Author getAuthorId() {
+    public Integer getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(Author authorId) {
+    public void setAuthorId(Integer authorId) {
         this.authorId = authorId;
     }
 

@@ -9,18 +9,19 @@
     <div class="Card" th:each="book : ${recommendedBooks}">
         <div class="Card-picture">
             <a href="#a" th:href="${book.id}">
-                <img src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
-                <div th:if="${book.price != null}" class="Card-sale" th:text="#{price.discount}">30% скидка</div>
+                <img src="/assets/img/content/main/card.jpg" th:src="${book.image}" alt="card.jpg"/>
+                <div th:if="${book.price >= 0.1}" class="Card-sale" th:text="${book.discount() + '% скидка'}"></div>
             </a>
         </div>
         <div class="Card-content">
             <strong class="Card-title">
                 <a href="#" th:text="${book.title}"></a>
             </strong>
-            <div class="Card-description" th:text="${book.author}"></div>
+            <div class="Card-description" th:text="${book.getAuthorsName()}"></div>
             <div class="Card-cost">
-                <span th:if="${book.price != null}" class="Card-priceOld" th:text="${book.priceOld}"></span>
-                <span class="Card-price" th:text="${book.price == null} ? ${book.priceOld} : ${book.price}"></span>
+                <span th:if="${book.price >= 0.1}" class="Card-priceOld" th:text="${'₽' + book.priceOld}"></span>
+                <span class="Card-price"
+                      th:text="${book.price >= 0.1} ? ${'₽' + book.discountPrice()} : ${'₽' + book.priceOld}"></span>
             </div>
         </div>
     </div>

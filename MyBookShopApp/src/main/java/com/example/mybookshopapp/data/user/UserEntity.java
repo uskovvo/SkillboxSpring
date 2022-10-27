@@ -1,11 +1,8 @@
 package com.example.mybookshopapp.data.user;
 
-import com.example.mybookshopapp.data.book.file.FileDownloadEntity;
-import com.example.mybookshopapp.data.book.links.Book2UserEntity;
+import com.example.mybookshopapp.data.Book;
 import com.example.mybookshopapp.data.book.review.BookReviewEntity;
-import com.example.mybookshopapp.data.book.review.BookReviewLikeEntity;
 import com.example.mybookshopapp.data.book.review.MessageEntity;
-import com.example.mybookshopapp.data.payments.BalanceTransactionEntity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,34 +15,59 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String hash;
 
-    @Column(columnDefinition = "TIMESTAMP NOT NULL")
+    @Column(columnDefinition = "DATE", nullable = false)
     private LocalDateTime regTime;
 
-    @Column(columnDefinition = "INT NOT NULL")
+    @Column(columnDefinition = "INT", nullable = false)
     private int balance;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "userId")
-    private List<Book2UserEntity> book2User = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "book2user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private List<Book> books;
 
-    @OneToMany(mappedBy = "userId")
-    private List<FileDownloadEntity> fileDownload = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "file_download",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private List<Book> fileDownload;
 
-    @OneToMany(mappedBy = "userId")
-    private List<BalanceTransactionEntity> balanceTransaction = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "balance_transaction",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private List<Book> balanceTransaction;
 
-    @OneToMany(mappedBy = "userId")
-    private List<BookReviewEntity> bookReview = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "book_review",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private List<Book> bookReview;
 
-    @OneToMany(mappedBy = "userId")
-    private List<BookReviewLikeEntity> bookReviewLike = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "book_review_like",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "review_id")
+    )
+    private List<BookReviewEntity> bookReviewLike;
 
     @OneToMany(mappedBy = "userId")
     private List<MessageEntity> messageList = new ArrayList<>();
@@ -53,11 +75,11 @@ public class UserEntity {
     @OneToOne(mappedBy = "userId")
     private UserContactEntity userContactEntity;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -93,43 +115,43 @@ public class UserEntity {
         this.name = name;
     }
 
-    public List<Book2UserEntity> getBook2User() {
-        return book2User;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setBook2User(List<Book2UserEntity> book2User) {
-        this.book2User = book2User;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
-    public List<FileDownloadEntity> getFileDownload() {
+    public List<Book> getFileDownload() {
         return fileDownload;
     }
 
-    public void setFileDownload(List<FileDownloadEntity> fileDownload) {
+    public void setFileDownload(List<Book> fileDownload) {
         this.fileDownload = fileDownload;
     }
 
-    public List<BalanceTransactionEntity> getBalanceTransaction() {
+    public List<Book> getBalanceTransaction() {
         return balanceTransaction;
     }
 
-    public void setBalanceTransaction(List<BalanceTransactionEntity> balanceTransaction) {
+    public void setBalanceTransaction(List<Book> balanceTransaction) {
         this.balanceTransaction = balanceTransaction;
     }
 
-    public List<BookReviewEntity> getBookReview() {
+    public List<Book> getBookReview() {
         return bookReview;
     }
 
-    public void setBookReview(List<BookReviewEntity> bookReview) {
+    public void setBookReview(List<Book> bookReview) {
         this.bookReview = bookReview;
     }
 
-    public List<BookReviewLikeEntity> getBookReviewLike() {
+    public List<BookReviewEntity> getBookReviewLike() {
         return bookReviewLike;
     }
 
-    public void setBookReviewLike(List<BookReviewLikeEntity> bookReviewLike) {
+    public void setBookReviewLike(List<BookReviewEntity> bookReviewLike) {
         this.bookReviewLike = bookReviewLike;
     }
 

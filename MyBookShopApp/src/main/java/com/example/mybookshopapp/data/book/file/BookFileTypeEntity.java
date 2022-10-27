@@ -12,7 +12,7 @@ public class BookFileTypeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
 
     @Column(columnDefinition = "TEXT")

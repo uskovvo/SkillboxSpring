@@ -1,9 +1,6 @@
 package com.example.mybookshopapp.data;
 
-import com.example.mybookshopapp.data.book.links.Book2GenreEntity;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,24 +9,28 @@ public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
 
     private Integer parentId;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String slug;
 
-    @OneToMany(mappedBy = "genreId")
-    private List<Book2GenreEntity> book2Genre = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "book2genre",
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Book> books;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -57,5 +58,11 @@ public class Genre {
         this.slug = slug;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
 
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 }

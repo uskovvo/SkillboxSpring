@@ -40,7 +40,7 @@ p.error-browser
                         </h2>
                         <div class="Authors-letter">
                             <div th:each="author : ${letters.value}" class="Authors-item">
-                                <a href="/authors/slug.html" th:href="@{/authors/slug}" th:text="${author.getLastName() + ' ' + author.firstName}">Абгарян
+                                <a href="/authors/slug.html" th:href="@{/authors/slug}" th:text="${author.getName()}">Абгарян
                                     Наринэ</a>
                             </div>
                         </div>

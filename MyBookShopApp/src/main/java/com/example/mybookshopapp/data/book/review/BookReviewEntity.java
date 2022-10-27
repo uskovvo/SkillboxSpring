@@ -1,11 +1,9 @@
 package com.example.mybookshopapp.data.book.review;
 
-import com.example.mybookshopapp.data.Book;
 import com.example.mybookshopapp.data.user.UserEntity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,46 +12,49 @@ public class BookReviewEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private Book bookId;
+    @Column(name = "book_id", columnDefinition = "INT", nullable = false)
+    private Integer bookId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity userId;
+    @Column(name = "user_id", columnDefinition = "INT", nullable = false)
+    private Integer userId;
 
-    @Column(columnDefinition = "TIMESTAMP NOT NULL")
+    @Column(columnDefinition = "DATE", nullable = false)
     private LocalDateTime time;
 
-    @Column(columnDefinition = "TEXT NOT NULL")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String text;
 
-    @OneToMany(mappedBy = "bookReview")
-    private List<BookReviewLikeEntity> bookReviewLike = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "book_review_like",
+            joinColumns = @JoinColumn(name = "review_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<UserEntity> bookReviewLike;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Book getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    public void setBookId(Book bookId) {
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 
-    public UserEntity getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(UserEntity userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -73,11 +74,11 @@ public class BookReviewEntity {
         this.text = text;
     }
 
-    public List<BookReviewLikeEntity> getBookReviewLike() {
+    public List<UserEntity> getBookReviewLike() {
         return bookReviewLike;
     }
 
-    public void setBookReviewLike(List<BookReviewLikeEntity> bookReviewLike) {
+    public void setBookReviewLike(List<UserEntity> bookReviewLike) {
         this.bookReviewLike = bookReviewLike;
     }
 }

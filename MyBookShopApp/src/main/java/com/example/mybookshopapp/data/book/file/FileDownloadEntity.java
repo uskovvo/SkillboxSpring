@@ -1,9 +1,5 @@
 package com.example.mybookshopapp.data.book.file;
 
-import com.example.mybookshopapp.data.Book;
-import com.example.mybookshopapp.data.book.links.Book2UserEntity;
-import com.example.mybookshopapp.data.user.UserEntity;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,24 +8,22 @@ public class FileDownloadEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity userId;
+    @Column(name = "user_id", columnDefinition = "INT", nullable = false)
+    private Integer userId;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private Book bookId;
+    @Column(name = "book_id", columnDefinition = "INT", nullable = false)
+    private Integer bookId;
 
-    @Column(columnDefinition = "INT NOT NULL DEFAULT 1")
+    @Column(columnDefinition = "INT DEFAULT 1", nullable = false)
     private int count;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -41,19 +35,19 @@ public class FileDownloadEntity {
         this.count = count;
     }
 
-    public UserEntity getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(UserEntity userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public Book getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    public void setBookId(Book bookId) {
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 }

@@ -12,14 +12,14 @@ public class BookFile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String hash;
 
     @OneToOne
     @JoinColumn(name = "type_id", referencedColumnName = "id")
     private BookFileTypeEntity bookFileTypeId;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String path;
 
     public Long getId() {

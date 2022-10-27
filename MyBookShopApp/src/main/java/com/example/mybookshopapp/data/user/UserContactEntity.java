@@ -11,7 +11,7 @@ public class UserContactEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -19,26 +19,26 @@ public class UserContactEntity {
 
     private ContactType type;
 
-    @Column(columnDefinition = "SMALLINT NOT NULL")
+    @Column(columnDefinition = "SMALLINT", nullable = false)
     private short approved;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String code;
 
     @Column(columnDefinition = "INT")
     private int codeTrails;
 
-    @Column(columnDefinition = "TIMESTAMP")
+    @Column(columnDefinition = "DATE")
     private LocalDateTime codeTime;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String contact;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
