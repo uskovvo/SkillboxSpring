@@ -23,7 +23,7 @@ public class PostponedPageController {
 
     @ModelAttribute("postponedBooks")
     public List<Book> bookList(){
-        return bookService.getBooksData();
+        return null;
     }
 
     @GetMapping("/postponed")

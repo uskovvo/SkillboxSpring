@@ -29,9 +29,9 @@ p.error-browser
             </h1>
             <div class="Section">
                 <div class="search">
-                    <form class="form form_search" action="#" method="post" data-searchlimit="5">
+                    <form class="form form_search" action="#" method="post" data-searchlimit="5" th:object="${searchWordDto}">
                         <input class="search-input" id="querypage" name="querypage" type="text"
-                               placeholder="Search over 30 million book titles" th:value="${searchWordDto.example}" value="Техника"/>
+                               placeholder="Search over 30 million book titles" th:field="*{example}" th:value="${searchWordDto.example}" value="Техника"/>
                         <button class="search-button" type="submit" name="searchpage" id="searchpage" th:text="#{topbar.search}">Поиск
                         </button>
                     </form>

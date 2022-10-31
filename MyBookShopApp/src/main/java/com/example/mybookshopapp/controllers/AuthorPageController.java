@@ -35,7 +35,7 @@ public class AuthorPageController {
 
     @ModelAttribute("authorBooks")
     public List<Book> bookList(){
-        return bookService.getBooksData();
+        return null;
     }
 
     @GetMapping("/authors")

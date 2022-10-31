@@ -7,9 +7,13 @@ public class BookPageDto {
     private Integer count;
     private List<Book> books;
 
-    public BookPageDto(List<Book> pageOfRecommendedBooks) {
-        this.books = pageOfRecommendedBooks;
+    public BookPageDto(List<Book> pageOfBook){
+        this.books = pageOfBook;
         this.count = books.size();
+    }
+    public BookPageDto(List<Book> pageOfRecommendedBooks, int count) {
+        this.books = pageOfRecommendedBooks;
+        this.count = count;
     }
 
     public Integer getCount() {

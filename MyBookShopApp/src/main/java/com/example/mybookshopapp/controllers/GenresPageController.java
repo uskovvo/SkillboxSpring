@@ -27,7 +27,7 @@ public class GenresPageController {
 
     @ModelAttribute("genresBooks")
     public List<Book> bookList(){
-        return bookService.getBooksData();
+        return null;
     }
 
 //    @ModelAttribute("genres")

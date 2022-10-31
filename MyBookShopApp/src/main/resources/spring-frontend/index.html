@@ -30,12 +30,12 @@ p.error-browser
                     <h2 class="Section-title" th:text="#{main.recommended}">Рекомендуемое
                     </h2>
                 </div>
-                <div th:replace="~{fragments/carousel_fragment :: carousel}"></div>
+                <div th:replace="~{fragments/carousel_fragment :: carousel(${recommendedBooks})}"></div>
                 <div class="Section-header">
                     <h2 class="Section-title" th:text="#{main.news}">Новинки
                     </h2>
                 </div>
-                <div th:replace="~{fragments/carousel_fragment :: carousel}"></div>
+                <div th:replace="~{fragments/carousel_fragment :: carousel(${recentBooks})}"></div>
                 <div class="Section-header">
                     <h2 class="Section-title" th:text="#{main.popular}">Популярное
                     </h2>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -25,20 +26,9 @@ public class BookService {
         this.authorRepository = authorRepository;
     }
 
-    public List<Book> getBooksData() {
-        return null;
-    }
-
-    public List<Book> getBooksByAuthor(String name) {
-        return null;
-    }
-
-    public List<Book> getBooksWithMaxDiscount() {
-        return bookRepository.getBooksWithMaxDiscount();
-    }
-
-    public List<Book> getBestsellers() {
-        return bookRepository.getBestsellers();
+    public int getCount(String title){
+        List<Book> books = bookRepository.findBookByTitleContaining(title);
+        return books.size();
     }
 
     public Page<Book> getPageOfRecommendedBooks(Integer offset, Integer limit) {
@@ -49,5 +39,15 @@ public class BookService {
     public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit){
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.findBookByTitleContaining(searchWord, nextPage);
+    }
+
+    public Page<Book> getPageOfRecentBooks(Integer offset, Integer limit){
+        Pageable nextPage = PageRequest.of(offset, limit, Sort.by("pubDate").descending());
+        return bookRepository.findAll(nextPage);
+    }
+
+    public Page<Book> getPageOfRecentBooksByDate(Date from, Date to, Integer offset, Integer limit){
+        Pageable nextPage = PageRequest.of(offset, limit, Sort.by("pubDate").descending());
+        return bookRepository.findBookByPubDate(from, to, nextPage);
     }
 }

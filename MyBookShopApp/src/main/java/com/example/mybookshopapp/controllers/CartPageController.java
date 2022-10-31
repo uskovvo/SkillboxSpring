@@ -23,7 +23,7 @@ public class CartPageController {
 
     @ModelAttribute("cartBooks")
     public List<Book> bookList(){
-        return bookService.getBooksData();
+        return null;
     }
 
     @GetMapping("/cart")

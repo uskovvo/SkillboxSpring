@@ -23,7 +23,7 @@ public class PopularBookPageController {
 
     @ModelAttribute("popularBooks")
     public List<Book> bookList(){
-        return bookService.getBooksData();
+        return null;
     }
 
     @GetMapping("/books/popular")

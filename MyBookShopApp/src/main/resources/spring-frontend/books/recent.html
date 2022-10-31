@@ -42,16 +42,16 @@ p.error-browser
                             <label class="form-label" th:text="#{recent.from}">с
                             </label>
                             <input class="form-input form-input_date form-input_date_uninit" id="fromdaterecent"
-                                   name="fromdaterecent" type="text" placeholder="Дата" data-refreshoffset="20"
-                                   data-refreshlimit="20" data-refreshshow="changedate" data-refreshfrom="0"
+                                   name="fromdaterecent" type="text" placeholder="Дата" data-refreshoffset="0"
+                                   data-refreshlimit="5" data-refreshshow="changedate" data-refreshfrom="0"
                                    autocomplete="off"/>
                         </div>
                         <div class="form-group">
                             <label class="form-label" th:text="#{recent.on}">по
                             </label>
                             <input class="form-input form-input_date form-input_date_uninit" id="enddaterecent"
-                                   name="enddaterecent" type="text" placeholder="Дата" data-refreshoffset="20"
-                                   data-refreshlimit="20" data-refreshshow="changedate" data-refreshto="0"
+                                   name="enddaterecent" type="text" placeholder="Дата" data-refreshoffset="0"
+                                   data-refreshlimit="5" data-refreshshow="changedate" data-refreshto="0"
                                    autocomplete="off"/>
                         </div>
                     </form>
@@ -61,9 +61,9 @@ p.error-browser
                     <div class="Cards-footer Cards-footer_center">
                         <a class="btn btn_primary"
                            href="#"
-                           data-refreshshow="popular"
-                           data-refreshoffset="20"
-                           data-refreshlimit="20" th:text="#{genres.showMore}">Показать еще</a>
+                           data-refreshshow="recent"
+                           data-refreshoffset="0"
+                           data-refreshlimit="5" th:text="#{genres.showMore}">Показать еще</a>
                     </div>
                 </div>
             </div>
