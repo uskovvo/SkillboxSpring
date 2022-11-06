@@ -40,7 +40,7 @@ p.error-browser
                     <h2 class="Section-title" th:text="#{main.popular}">Популярное
                     </h2>
                 </div>
-                <div th:replace="~{fragments/carousel_fragment :: carousel}"></div>
+                <div th:replace="~{fragments/carousel_fragment :: carousel(${recentBooks})}"></div>
             </div>
             <h2 class="Middle-title" th:text="#{main.byTags}">Книги по тегам
             </h2>

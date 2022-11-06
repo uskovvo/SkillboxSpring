@@ -4,23 +4,23 @@ import java.util.List;
 
 public class BookPageDto {
 
-    private Integer count;
+    private long count;
     private List<Book> books;
 
     public BookPageDto(List<Book> pageOfBook){
         this.books = pageOfBook;
         this.count = books.size();
     }
-    public BookPageDto(List<Book> pageOfRecommendedBooks, int count) {
-        this.books = pageOfRecommendedBooks;
-        this.count = count;
-    }
+//    public BookPageDto(List<Book> pageOfRecommendedBooks, long count) {
+//        this.books = pageOfRecommendedBooks;
+//        this.count = count;
+//    }
 
-    public Integer getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(long count) {
         this.count = count;
     }
 

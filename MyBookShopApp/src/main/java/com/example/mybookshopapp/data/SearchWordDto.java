@@ -3,6 +3,7 @@ package com.example.mybookshopapp.data;
 public class SearchWordDto {
 
     private String example;
+    private int count;
 
     public SearchWordDto(){}
 

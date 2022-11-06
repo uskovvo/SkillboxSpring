@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -64,7 +66,7 @@ public class MainPageController {
         model.addAttribute("searchWordDto", searchWordDto);
         model.addAttribute("searchResults",
                 bookService
-                        .getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5));
+                        .getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5).getContent());
         return "/search/index";
     }
 
@@ -73,9 +75,11 @@ public class MainPageController {
     public BookPageDto getNextSearchPage(@RequestParam("offset") Integer offset,
                                          @RequestParam("limit") Integer limit,
                                          @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto){
+
         Page<Book> page = bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit);
-        int count = bookService.getCount(searchWordDto.getExample());
-        return new BookPageDto(page.getContent(), count);
+        BookPageDto bookPageDto = new BookPageDto(page.getContent());
+        bookPageDto.setCount(page.getTotalElements());
+        return bookPageDto;
     }
 
     @GetMapping("/books/recent")
@@ -91,20 +95,28 @@ public class MainPageController {
         return new BookPageDto(bookService.getPageOfRecentBooks(offset, limit).getContent());
     }
 
-//    @GetMapping("/books/recent")
-//    @RequestBody
-//    public BookPageDto getRecentBook(@RequestParam("from") String from,
-//                                     @RequestParam("to") String to,
-//                                     @RequestParam("offset") Integer offset,
-//                                     @RequestParam("limit") Integer limit){
-//        try {
-//            Date dateFrom = new SimpleDateFormat("yyyy/MMM/dd").parse(from);
-//            Date dateTo = new SimpleDateFormat("yyyy/MMM/dd").parse(to);
-//
-//            return new BookPageDto(bookService.getPageOfRecentBooksByDate(dateFrom, dateTo, offset, limit).getContent());
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    @GetMapping("/books/recentDate")
+    @ResponseBody
+    public BookPageDto getRecentBook(@RequestParam(value = "from", required = false) String from,
+                                     @RequestParam(value = "to", required = false) String to,
+                                     @RequestParam("offset") Integer offset,
+                                     @RequestParam("limit") Integer limit){
+        try {
+            LocalDate now = LocalDate.now();
+            LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
+            if(from.isEmpty()){
+                from = oneMonthAgo.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+            }
+            if(to.isEmpty()){
+                to = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+            }
+            Date dateFrom = new SimpleDateFormat("yyyy/MM/dd").parse(from);
+            Date dateTo = new SimpleDateFormat("yyyy/MM/dd").parse(to);
+
+            return new BookPageDto(bookService.getPageOfRecentBooksByDate(dateFrom, dateTo, offset, limit).getContent());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

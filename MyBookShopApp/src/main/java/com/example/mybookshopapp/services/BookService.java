@@ -26,10 +26,10 @@ public class BookService {
         this.authorRepository = authorRepository;
     }
 
-    public int getCount(String title){
-        List<Book> books = bookRepository.findBookByTitleContaining(title);
-        return books.size();
-    }
+//    public int getCount(String title){
+//        List<Book> books = bookRepository.findBookByTitleContaining(title);
+//        return books.size();
+//    }
 
     public Page<Book> getPageOfRecommendedBooks(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);

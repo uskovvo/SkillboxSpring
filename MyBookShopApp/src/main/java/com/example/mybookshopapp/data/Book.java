@@ -10,7 +10,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +25,7 @@ public class Book {
 
     @Column(name = "pub_date", columnDefinition = "DATE", nullable = false)
     @ApiModelProperty("date of book publication")
+    @JsonIgnore
     private Date pubDate;
 
     @Column(name = "is_bestseller", columnDefinition = "INT", nullable = false)
@@ -47,6 +47,7 @@ public class Book {
 
     @Column(columnDefinition = "TEXT")
     @ApiModelProperty("book description text")
+    @JsonIgnore
     private String description;
 
     @ManyToMany
@@ -92,6 +93,16 @@ public class Book {
             return priceOld;
         }
         return priceOld - Math.toIntExact(Math.round(price * priceOld));
+    }
+
+    @JsonProperty
+    public Integer rating(){
+        return 5;
+    }
+
+    @JsonProperty
+    public String status(){
+        return "KEPT";
     }
 
     @ManyToMany
