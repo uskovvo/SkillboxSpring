@@ -11,6 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -26,28 +29,32 @@ public class BookService {
         this.authorRepository = authorRepository;
     }
 
-//    public int getCount(String title){
-//        List<Book> books = bookRepository.findBookByTitleContaining(title);
-//        return books.size();
-//    }
-
     public Page<Book> getPageOfRecommendedBooks(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.findAll(nextPage);
     }
 
-    public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit){
+    public List<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit){
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.findBookByTitleContaining(searchWord, nextPage);
     }
 
-    public Page<Book> getPageOfRecentBooks(Integer offset, Integer limit){
+    public List<Book> getPageOfRecentBooks(Integer offset, Integer limit){
         Pageable nextPage = PageRequest.of(offset, limit, Sort.by("pubDate").descending());
-        return bookRepository.findAll(nextPage);
+        return bookRepository.findAllBooks(nextPage);
     }
 
-    public Page<Book> getPageOfRecentBooksByDate(Date from, Date to, Integer offset, Integer limit){
+    public List<Book> getPageOfRecentBooksByDate(String from, String to, Integer offset, Integer limit){
         Pageable nextPage = PageRequest.of(offset, limit, Sort.by("pubDate").descending());
-        return bookRepository.findBookByPubDate(from, to, nextPage);
+        Date fromD = new Date();
+        Date toD = new Date();
+        try {
+            fromD = new SimpleDateFormat("dd.MM.yyyy").parse(from);
+            toD = new SimpleDateFormat("dd.MM.yyyy").parse(to);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return bookRepository.findBookByPubDateBetween(fromD, toD, nextPage);
     }
 }
