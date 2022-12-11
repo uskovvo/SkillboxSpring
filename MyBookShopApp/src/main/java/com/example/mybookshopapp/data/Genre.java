@@ -1,5 +1,7 @@
 package com.example.mybookshopapp.data;
 
+import com.example.mybookshopapp.data.book.Book;
+
 import javax.persistence.*;
 import java.util.List;
 

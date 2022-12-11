@@ -1,6 +1,6 @@
 package com.example.mybookshopapp.data.book.file;
 
-import com.example.mybookshopapp.data.BookFile;
+import com.example.mybookshopapp.data.book.BookFile;
 
 import javax.persistence.*;
 

@@ -1,5 +1,6 @@
 package com.example.mybookshopapp.data;
 
+import com.example.mybookshopapp.data.book.Book;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

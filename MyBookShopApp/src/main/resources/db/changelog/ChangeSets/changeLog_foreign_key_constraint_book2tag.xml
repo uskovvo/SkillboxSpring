@@ -1,0 +1,18 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="Professional" id="TablesTagsAndBook2Tag">
+        <addForeignKeyConstraint baseColumnNames="book_id"
+                                 baseTableName="book2tag"
+                                 constraintName="fk_book_2_tag"
+                                 referencedTableName="books"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseColumnNames="tag_id"
+                                 baseTableName="book2tag"
+                                 constraintName="fk_tag_2_book"
+                                 referencedTableName="tags"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

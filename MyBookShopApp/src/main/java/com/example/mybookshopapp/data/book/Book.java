@@ -1,7 +1,8 @@
-package com.example.mybookshopapp.data;
+package com.example.mybookshopapp.data.book;
 
-import com.example.mybookshopapp.data.book.review.BookReviewEntity;
-import com.example.mybookshopapp.data.payments.BalanceTransactionEntity;
+import com.example.mybookshopapp.data.Author;
+import com.example.mybookshopapp.data.Genre;
+import com.example.mybookshopapp.data.TagEntity;
 import com.example.mybookshopapp.data.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -100,11 +101,6 @@ public class Book {
         return 5;
     }
 
-    @JsonProperty
-    public String status(){
-        return "KEPT";
-    }
-
     @ManyToMany
     @JoinTable(
             name = "book2genre",
@@ -122,6 +118,13 @@ public class Book {
     )
     @JsonIgnore
     private List<UserEntity> users;
+
+    @JsonProperty
+    public String status(){
+        users.forEach(u -> {
+        });
+        return "KEPT";
+    }
 
     @ManyToMany
     @JoinTable(
@@ -149,6 +152,14 @@ public class Book {
     )
     @JsonIgnore
     private List<UserEntity> bookReview;
+
+    @ManyToMany
+    @JoinTable(
+            name = "book2tag",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<TagEntity> tagEntityList;
 
     public Long getId() {
         return id;
@@ -272,5 +283,13 @@ public class Book {
 
     public void setBookReview(List<UserEntity> bookReview) {
         this.bookReview = bookReview;
+    }
+
+    public List<TagEntity> getTagEntityList() {
+        return tagEntityList;
+    }
+
+    public void setTagEntityList(List<TagEntity> tagEntityList) {
+        this.tagEntityList = tagEntityList;
     }
 }

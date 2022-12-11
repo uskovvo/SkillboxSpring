@@ -1,6 +1,6 @@
 package com.example.mybookshopapp.data.user;
 
-import com.example.mybookshopapp.data.Book;
+import com.example.mybookshopapp.data.book.Book;
 import com.example.mybookshopapp.data.book.review.BookReviewEntity;
 import com.example.mybookshopapp.data.book.review.MessageEntity;
 
@@ -23,7 +23,7 @@ public class UserEntity {
     @Column(columnDefinition = "DATE", nullable = false)
     private LocalDateTime regTime;
 
-    @Column(columnDefinition = "INT", nullable = false)
+    @Column(columnDefinition = "INT DEFAULT 0", nullable = false)
     private int balance;
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)

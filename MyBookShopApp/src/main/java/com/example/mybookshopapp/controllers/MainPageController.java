@@ -1,8 +1,8 @@
 package com.example.mybookshopapp.controllers;
 
-import com.example.mybookshopapp.data.Book;
-import com.example.mybookshopapp.data.BookPageDto;
-import com.example.mybookshopapp.data.SearchWordDto;
+import com.example.mybookshopapp.data.Dto.BookPageDto;
+import com.example.mybookshopapp.data.Dto.SearchWordDto;
+import com.example.mybookshopapp.data.book.Book;
 import com.example.mybookshopapp.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,24 +23,29 @@ public class MainPageController {
         this.bookService = bookService;
     }
 
+    @ModelAttribute("searchWordDto")
+    public SearchWordDto searchWordDto() {
+        return new SearchWordDto();
+    }
+
+    @ModelAttribute("searchResults")
+    public List<Book> searchResults() {
+        return new ArrayList<>();
+    }
+
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks() {
         return bookService.getPageOfRecommendedBooks(0, 6).getContent();
     }
 
-    @ModelAttribute("searchWordDto")
-    public SearchWordDto searchWordDto(){
-        return new SearchWordDto();
-    }
-
-    @ModelAttribute("searchResults")
-    public List<Book> searchResults(){
-        return new ArrayList<>();
-    }
-
     @ModelAttribute("recentBooks")
-    public List<Book> getRecentBooks(){
-        return bookService.getPageOfRecentBooks(0, 5);
+    public List<Book> getRecentBooks() {
+        return bookService.getRecentBooks(0, 6);
+    }
+
+    @ModelAttribute("popularBooks")
+    public List<Book> bookList() {
+        return bookService.getPageOfPopularBook(0, 6);
     }
 
     @GetMapping("/")
@@ -48,14 +53,8 @@ public class MainPageController {
         return "index";
     }
 
-    @GetMapping("/books/recommended")
-    @ResponseBody
-    public BookPageDto getBooksPage(@RequestParam("offset") Integer offset, @RequestParam("limit") Integer limit){
-        return new BookPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
-    }
-
-    @GetMapping(value = {"/search", "/search/{searchWord}"})
-    public String getSearchResults(@PathVariable(value = "searchWord", required = false)
+    @GetMapping(value = {"/search", "/search/{searchWordMain}"})
+    public String getSearchResults(@PathVariable(value = "searchWordMain", required = false)
                                            SearchWordDto searchWordDto, Model model) {
         model.addAttribute("searchWordDto", searchWordDto);
         model.addAttribute("searchResults",
@@ -64,28 +63,29 @@ public class MainPageController {
         return "/search/index";
     }
 
-    @GetMapping("/search/page/{searchWord}")
+    @GetMapping("/search/page/{searchWordMain}")
     @ResponseBody
     public BookPageDto getNextSearchPage(@RequestParam("offset") Integer offset,
                                          @RequestParam("limit") Integer limit,
-                                         @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {
+                                         @PathVariable(value = "searchWordMain", required = false) SearchWordDto searchWordDto) {
 
         return new BookPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit));
     }
 
-    @GetMapping(value = "/books/recent", produces = MediaType.TEXT_HTML_VALUE)
-    public String getRecent() {
-        return "/books/recent";
+    @GetMapping("/books/recommended")
+    @ResponseBody
+    public BookPageDto getBooksPage(
+            @RequestParam("offset") Integer offset,
+            @RequestParam("limit") Integer limit) {
+        return new BookPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
     }
 
-    @GetMapping(value = "/books/recent", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/books/recentMain", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public BookPageDto getRecentBook(@RequestParam(value = "from", required = false) String from,
                                      @RequestParam(value = "to", required = false) String to,
                                      @RequestParam("offset") Integer offset,
-                                     @RequestParam("limit") Integer limit,
-                                     Model model) {
-        model.addAttribute("dateSearch", bookService.getPageOfRecentBooksByDate(from,to,offset,limit));
+                                     @RequestParam("limit") Integer limit) {
         return new BookPageDto(bookService.getPageOfRecentBooksByDate(from, to, offset, limit));
     }
 }

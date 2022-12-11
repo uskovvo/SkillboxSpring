@@ -39,13 +39,13 @@ p.error-browser
                     </h1>
                 </div>
                 <div class="Cards Cards_refresh">
-                    <div th:replace="~{fragments/books_pool_fragment :: bookSlider(${popularBooks})}"></div>
+                    <div class="Card" th:replace="~{fragments/books_pool_fragment :: bookSlider(${popularBooks})}"></div>
                     <div class="Cards-footer Cards-footer_center">
                         <a class="btn btn_primary"
                            href="#"
                            data-refreshshow="popular"
-                           data-refreshoffset="20"
-                           data-refreshlimit="20" th:text="#{genres.showMore}">Показать еще</a>
+                           data-refreshoffset="0"
+                           data-refreshlimit="5" th:text="#{genres.showMore}">Показать еще</a>
                     </div>
                 </div>
             </div>

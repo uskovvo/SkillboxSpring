@@ -1,4 +1,4 @@
-package com.example.mybookshopapp.data;
+package com.example.mybookshopapp.data.book;
 
 import com.example.mybookshopapp.data.book.file.BookFileTypeEntity;
 
