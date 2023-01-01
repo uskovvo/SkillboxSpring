@@ -41,23 +41,4 @@ public class PostponedPageController {
     public String postponedBook(){
         return "postponed";
     }
-
-    @GetMapping(value = {"/search", "/search/{searchWordPostponed}"})
-    public String getSearchResults(@PathVariable(value = "searchWordPostponed", required = false)
-                                           SearchWordDto searchWordDto, Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults",
-                bookService
-                        .getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5));
-        return "/search/index";
-    }
-
-    @GetMapping("/search/page/{searchWordPostponed}")
-    @ResponseBody
-    public BookPageDto getNextSearchPage(@RequestParam("offset") Integer offset,
-                                         @RequestParam("limit") Integer limit,
-                                         @PathVariable(value = "searchWordPostponed", required = false) SearchWordDto searchWordDto) {
-
-        return new BookPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit));
-    }
 }

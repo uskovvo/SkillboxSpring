@@ -3,6 +3,7 @@ package com.example.mybookshopapp.data.book;
 import com.example.mybookshopapp.data.Author;
 import com.example.mybookshopapp.data.Genre;
 import com.example.mybookshopapp.data.TagEntity;
+import com.example.mybookshopapp.data.book.links.Book2UserEntity;
 import com.example.mybookshopapp.data.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -121,8 +122,6 @@ public class Book {
 
     @JsonProperty
     public String status(){
-        users.forEach(u -> {
-        });
         return "KEPT";
     }
 
@@ -159,6 +158,7 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
+    @JsonIgnore
     private List<TagEntity> tagEntityList;
 
     public Long getId() {

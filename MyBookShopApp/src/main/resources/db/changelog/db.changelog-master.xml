@@ -16,4 +16,6 @@
     <include file="db/changelog/tablesData/changeLog_create_book2user.xml"/>
     <include file="db/changelog/ChangeSets/changeLog_create_table_tags.xml"/>
     <include file="db/changelog/ChangeSets/changeLog_foreign_key_constraint_book2tag.xml"/>
+    <include file="db/changelog/tablesData/changeLog_create_tags.xml"/>
+    <include file="db/changelog/tablesData/changeLog_create_book2tag.xml"/>
 </databaseChangeLog>

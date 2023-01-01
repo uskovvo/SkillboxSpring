@@ -48,25 +48,6 @@ public class AuthorPageController {
         return null;
     }
 
-    @GetMapping(value = {"/search", "/search/{searchWordAuthor}"})
-    public String getSearchResults(@PathVariable(value = "searchWordAuthor", required = false)
-                                           SearchWordDto searchWordDto, Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults",
-                bookService
-                        .getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5));
-        return "/search/index";
-    }
-
-    @GetMapping("/search/page/{searchWordAuthor}")
-    @ResponseBody
-    public BookPageDto getNextSearchPage(@RequestParam("offset") Integer offset,
-                                         @RequestParam("limit") Integer limit,
-                                         @PathVariable(value = "searchWordAuthor", required = false) SearchWordDto searchWordDto) {
-
-        return new BookPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit));
-    }
-
     @GetMapping("/authors")
     public String authorsPage(){
         return "/authors/index";

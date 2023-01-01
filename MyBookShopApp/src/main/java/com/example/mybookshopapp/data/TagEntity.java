@@ -1,6 +1,7 @@
 package com.example.mybookshopapp.data;
 
 import com.example.mybookshopapp.data.book.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +29,13 @@ public class TagEntity {
             joinColumns = @JoinColumn(name = "tag_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
+
+    @JsonIgnore
     @Getter
     @Setter
     private List<Book> bookList;
+
+    public int getCountBooks(){
+        return bookList.size();
+    }
 }

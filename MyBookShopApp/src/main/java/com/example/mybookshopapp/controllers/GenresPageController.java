@@ -49,23 +49,4 @@ public class GenresPageController {
     public String genresPage(){
         return "genres/index";
     }
-
-    @GetMapping(value = {"/search", "/search/{searchWordGenres}"})
-    public String getSearchResults(@PathVariable(value = "searchWordGenres", required = false)
-                                           SearchWordDto searchWordDto, Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults",
-                bookService
-                        .getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5));
-        return "/search/index";
-    }
-
-    @GetMapping("/search/page/{searchWordGenres}")
-    @ResponseBody
-    public BookPageDto getNextSearchPage(@RequestParam("offset") Integer offset,
-                                         @RequestParam("limit") Integer limit,
-                                         @PathVariable(value = "searchWordGenres", required = false) SearchWordDto searchWordDto) {
-
-        return new BookPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit));
-    }
 }

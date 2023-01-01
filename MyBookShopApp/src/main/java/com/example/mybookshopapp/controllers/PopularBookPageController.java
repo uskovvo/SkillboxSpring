@@ -7,7 +7,6 @@ import com.example.mybookshopapp.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -41,25 +40,6 @@ public class PopularBookPageController {
     @GetMapping("/books/popular")
     public String popularBookPage(){
         return "books/popular";
-    }
-
-    @GetMapping(value = {"/search", "/search/{searchWordPopular}"})
-    public String getSearchResults(@PathVariable(value = "searchWordPopular", required = false)
-                                           SearchWordDto searchWordDto, Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults",
-                bookService
-                        .getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5));
-        return "/search/index";
-    }
-
-    @GetMapping("/search/page/{searchWordPopular}")
-    @ResponseBody
-    public BookPageDto getNextSearchPage(@RequestParam("offset") Integer offset,
-                                         @RequestParam("limit") Integer limit,
-                                         @PathVariable(value = "searchWordPopular", required = false) SearchWordDto searchWordDto) {
-
-        return new BookPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit));
     }
 
     @GetMapping(value = "/books/popular", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -38,25 +38,6 @@ public class RecentBookPageController {
         return bookService.getPageOfRecentBooks(0, 5);
     }
 
-    @GetMapping(value = {"/search", "/search/{searchWordRecent}"})
-    public String getSearchResult(@PathVariable(value = "searchWordRecent", required = false)
-                                           SearchWordDto searchWordDto, Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults",
-                bookService
-                        .getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5));
-        return "/search/index";
-    }
-
-    @GetMapping("/search/page/{searchWordRecent}")
-    @ResponseBody
-    public BookPageDto getNextSearchPag(@RequestParam("offset") Integer offset,
-                                         @RequestParam("limit") Integer limit,
-                                         @PathVariable(value = "searchWordRecent", required = false) SearchWordDto searchWordDto) {
-
-        return new BookPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit));
-    }
-
     @GetMapping(value = "/books/recent", produces = MediaType.TEXT_HTML_VALUE)
     public String getRecent(Model model) {
         model
